@@ -1,0 +1,27 @@
+{
+    "id": "1C05828D",
+    "path": "/cloud/project/scripts/TEMP_HS_difference 6 to 18.R",
+    "project_path": "scripts/TEMP_HS_difference 6 to 18.R",
+    "type": "r_source",
+    "hash": "3638827150",
+    "contents": "",
+    "dirty": false,
+    "created": 1759366609903.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "tempName": "Untitled1",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "18,33",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1759367267,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1759367267328,
+    "read_only": false,
+    "read_only_alternatives": []
+}
