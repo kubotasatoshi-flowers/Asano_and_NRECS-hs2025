@@ -1,0 +1,47 @@
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(patchwork)
+library(cowplot)
+library(readr)
+library(ggpp)
+library(pracma)
+
+#タイムゾーンの指定
+tz_use <- "Asia/Tokyo"
+
+#csvからデータ読み込み
+data <- read.table("/cloud/project/data/TEMP_NRECS_HS.csv",sep=",",
+                   comment.char="#", header=T) 
+
+#列1の名前を変更
+names(data)[1] <- "datetime"
+
+#列１をPOSIXの日時データに変換
+data <- data %>%
+  mutate(across(1, ~ as.POSIXct(., format = "%Y-%m-%d %H:%M:%S", tz = "Asia/Tokyo")))
+
+#列2-5を数値データとして定義
+data <- data %>%
+  mutate(across(2:5, as.numeric))
+
+#データ表示範囲指定
+from <- as.POSIXct("2025-08-29 00:00:00", tz = tz_use) 
+to   <- as.POSIXct("2025-09-10 23:59:00", tz = tz_use)
+
+# データの整形# データをlong形式に変換
+df_long <-data %>%
+  pivot_longer(
+    cols = c("RZT_W_HP","HST_W_HP","RZT_A_HP","HST_A_HP"),
+    names_to = "Type",
+    values_to = "Value"
+  )
+
+library(hms)
+times <- as_hms(c("06:00:00", "18:00:00"))
+
+df_multi <- df_long %>%
+  filter(as_hms(datetime) %in% times)
+
+
+
