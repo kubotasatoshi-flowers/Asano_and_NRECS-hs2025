@@ -1,0 +1,37 @@
+---
+title: "Test"
+format:
+  pdf:
+    pdf-engine: xelatex
+header-includes:
+  - \usepackage{booktabs}
+  - \usepackage{multirow}
+  - \usepackage{caption}
+  - \captionsetup[table]{name=Table,labelsep=period,skip=0pt}
+---
+
+```{r}
+#| label: tbl-summary
+#| tbl-cap: "Descriptive statistics of treatments"
+
+library(dplyr)
+library(knitr)
+library(kableExtra)
+library(scales)
+kbl(
+  df,
+  format    = "latex",
+  booktabs  = TRUE,
+  col.names = c("", "$n$", "Mean", "SD"),  # 1列目は空席
+  align     = c("l","r","r","r"),
+  escape    = FALSE
+) |>
+  add_header_above(
+    c("\\multirow{2}{*}{Group}" = 1, "Summary" = 3),
+    line   = FALSE,
+    escape = FALSE                    # ★ここ必須
+  ) |>
+  row_spec(0, extra_latex_after = "\\cmidrule(lr){2-4}") |>
+  kable_styling(latex_options = "hold_position")
+
+```

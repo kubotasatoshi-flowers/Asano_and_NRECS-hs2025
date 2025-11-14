@@ -1,0 +1,315 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  japanese,
+  11pt,
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+\usepackage{xcolor}
+\usepackage[margin=25mm,top=25mm,bottom=25mm,left=20mm,right=20mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage{setspace}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+\ifLuaTeX
+\usepackage[bidi=basic,provide=*]{babel}
+\else
+\usepackage[bidi=default,provide=*]{babel}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage{luatexja}
+\usepackage[haranoaji]{luatexja-preset}
+\usepackage{fontspec}\setmainfont{TeX Gyre Termes}
+\usepackage{caption}\captionsetup[table]{skip=6pt}
+\usepackage{booktabs,longtable,array,xcolor,colortbl,multirow}
+\KOMAoption{captions}{tableheading}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{caption}
+\captionsetup[table]{name=Table,labelsep=period}
+\captionsetup[figure]{name=Fig,labelsep=period}
+% 見出し後の共通余白を定義
+\newlength{\headingafter}
+\setlength{\headingafter}{0ex}
+%{0ex plus 0.4ex minus 0.2ex}
+
+% ----- section -----
+\titleformat{\section}
+  {\normalfont\large\bfseries\centering\color{black}}
+  {\thesection}{1em}{}
+\titlespacing*{\section}
+  {0pt}          % 左インデント
+  {2.5ex plus 1ex} % 見出しの「前（上）」の余白（レベルごとに変えてOK）
+  {\headingafter}  % 見出しの「後（下）」＝本文との行間（共通）
+
+% ----- subsection -----
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{black}}
+  {\thesubsection}{0.7em}{}
+\titlespacing*{\subsection}
+  {0pt}          % 左インデント
+  {2.5ex plus 1ex} % 見出しの「前（上）」の余白（レベルごとに変えてOK）
+  {\headingafter}  % 見出しの「後（下）」＝本文との行間（共通）
+
+% ----- subsubsection -----
+\titleformat{\subsubsection}
+  {\normalfont\normalsize\bfseries\color{black}}
+  {\thesubsubsection}{0.5em}{}
+\titlespacing*{\subsubsection}
+  {0pt}          % 左インデント
+  {2.5ex plus 1ex} % 見出しの「前（上）」の余白（レベルごとに変えてOK）
+  {\headingafter}  % 見出しの「後（下）」＝本文との行間（共通）
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{目次}
+\else
+  \newcommand\contentsname{目次}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{図一覧}
+\else
+  \newcommand\listfigurename{図一覧}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{表一覧}
+\else
+  \newcommand\listtablename{表一覧}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{図}
+\else
+  \newcommand\figurename{図}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{表}
+\else
+  \newcommand\tablename{表}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{コード}
+\newcommand*\listoflistings{\listof{codelisting}{コード一覧}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={アサノ大成基礎エンジニアリング報告書},
+  pdfauthor={名前 大学},
+  pdflang={ja},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{アサノ大成基礎エンジニアリング報告書}
+\author{名前 大学}
+\date{}
+\begin{document}
+\maketitle
+
+
+\setstretch{1.5}
+\newpage
+
+\section{目的}\label{ux76eeux7684}
+
+　CO\textsubscript{2}排出量の削減は世界規模の課題であり，我が国においても2050年までのカーボンニュートラルの達成が目標となっている。施設園芸では一般的に冬季には化石燃料由来のエネルギーによって，温室を暖房することが一般的に行われており，施設園芸における園芸作物生産はCO\textsubscript{2}の大幅な排出が伴うことから，この排出量の削減が大きな課題となっている。したがって，再生可能エネルギーおよび低利用エネルギーの積極的な利用を見据えた省エネルギー・低CO\textsubscript{2}排出栽培技術の開発が必要である。そこで，本研究ではアサノ大成基礎エンジニアリング株式会社が得意とする地中熱利用と日本大学が開発中の蓄熱型N.RECS（N.RECS-hs）を組み合わせて，省エネルギー・脱炭素型植物栽培システムを構築するとともに，従来方法と比較して本システムの性能を評価することを目的とする。
+
+\section{材料および方法}\label{ux6750ux6599ux304aux3088ux3073ux65b9ux6cd5}
+
+\subsection{温室内における装置の配置と運用}\label{ux6e29ux5ba4ux5185ux306bux304aux3051ux308bux88c5ux7f6eux306eux914dux7f6eux3068ux904bux7528}
+
+　日本大学生物資源科学部の学長温室を東西に二分割し，東側を対照区，西側を処理区とした。両区には幅1.2m，長さ8mの栽培ベンチが各６台を設置し，処理区の６台のベンチに標準型N.RECS（N.RECS-St），蓄熱型N.RECS-hs（N.RECS-hs），U字溝型N.RECS(N.RECS-ug）を導入した。N.RECS用熱源は北側3ベンチを地下水熱式ヒートポンプ（W-HP），南側3ベンチを空気熱源式ヒートポンプ（A-HP）とした。N.RECS-hsに用いる蓄熱材は水を用いた。
+\#\#\# ヒートポンプ（HP）の種類と設定 　空気熱源式HP（Air
+HP）にはエコヌクールレオ（三菱電機（株），型番入れる），地下水熱源式HP（Water
+HP）には（長府製作所，型番入れる）を用いた。 　Table~\ref{tbl-spec}
+に両熱源の主要諸元を示した。Air
+HPの一次側熱交換器（室外機）は温室南側の外に設置され，Water
+HPの一次側熱交換は温室北西に設置した貯水槽に設置した？？？に接続して行った。
+とWater
+HPはそれぞれ並列して上記に示したN.RECS-st，N.RECS-hs，N.RECS-ugを並列に接続し，熱源からN.RECSまでの距離は両者でほぼ同一とした。
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1841}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.0597}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.0697}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1642}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1791}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1642}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1791}}@{}}
+
+\caption{\label{tbl-spec}熱源の諸元}
+
+\tabularnewline
+
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+装置名
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+製造元
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+型式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\makecell[c]{冷却能力\\（kWh）}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\makecell[c]{定格消費電力\\（kW）}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\makecell[c]{加熱能力\\（kWh）}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\makecell[c]{定格消費電力\\（kW）}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+エコヌクールレオ & 三菱電機 & VEH-712HCC-k & 7.2 & 2.57 & 11.8 & 2.95 \\
+冷温水熱源機（地下水熱ヒートポンプ） & 長府製作所 & GSHP-0624X & 6.0 &
+1.33 & 6.0 & 1.14 \\
+
+\end{longtable}
+
+\subsection{実験区の設定と装置の運用}\label{ux5b9fux9a13ux533aux306eux8a2dux5b9aux3068ux88c5ux7f6eux306eux904bux7528}
+
+　対照区は根域温度の制御は行わず，慣行栽培法で栽培した。処理区の既設A-HPと新規W-HPの2種類とN.REC-St，N.RECS-hs，N.RECS-ugの3種類を組み合わせて6区を設定する。栽培植物は野菜，花等のポット苗，切り花や球根植物を中心にシーズンごとに選定して供試する。
+センサーの種類を表記する。
+
+\subsection{測定項目とデータの解析}\label{ux6e2cux5b9aux9805ux76eeux3068ux30c7ux30fcux30bfux306eux89e3ux6790}
+
+　測定項目は温室内気温，培養土温度，蓄熱槽温度，気温制御用HPの消費電力量，W-HPとA-HPの消費電力量，灯油消費量を測定する。これらの測定データを解析し，W-HPと従来法であるA-HPおよび気温制御のみの対照区のエネルギー消費量とCO\textsubscript{2}排出量を比較してW-HPの優位性を検証するとともに，N.RECS-hsとN.RECS-stを比較して蓄熱の有効性について明らかにする。
+\# 結果 \#\# 実験期間中の温室内の気温の推移
+
+\subsection{考察}\label{ux8003ux5bdf}
+
+
+
+
+\end{document}

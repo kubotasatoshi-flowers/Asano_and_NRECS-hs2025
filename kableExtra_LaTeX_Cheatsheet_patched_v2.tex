@@ -1,0 +1,533 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  japanese,
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+\ifLuaTeX
+\usepackage[bidi=basic,provide=*]{babel}
+\else
+\usepackage[bidi=default,provide=*]{babel}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{booktabs}
+\usepackage{caption}
+\captionsetup[table]{name=Table,labelsep=period,skip=6pt}
+\usepackage{longtable}
+\captionsetup[longtable]{skip=0pt}
+\usepackage{xcolor}
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{目次}
+\else
+  \newcommand\contentsname{目次}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{図一覧}
+\else
+  \newcommand\listfigurename{図一覧}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{表一覧}
+\else
+  \newcommand\listtablename{表一覧}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{図}
+\else
+  \newcommand\figurename{図}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{表}
+\else
+  \newcommand\tablename{表}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{コード}
+\newcommand*\listoflistings{\listof{codelisting}{コード一覧}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={kableExtra LaTeX チートシート},
+  pdfauthor={Generated by ChatGPT},
+  pdflang={ja},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{kableExtra LaTeX チートシート}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{論文PDF向け・使い方とコード例}
+\author{Generated by ChatGPT}
+\date{2025-11-12}
+\begin{document}
+\maketitle
+
+
+\section{使い方の前提}\label{ux4f7fux3044ux65b9ux306eux524dux63d0}
+
+\begin{itemize}
+\tightlist
+\item
+  本書は \textbf{LaTeX（PDF）出力}に特化した \emph{kableExtra}
+  の実用チートシートです。\\
+\item
+  Quarto(.qmd) を \textbf{Render}（Knitではなく）してください。\\
+\item
+  事前に \texttt{library(kableExtra)}
+  などを読み込めば、そのまま実行できます。
+\end{itemize}
+
+\section{1. 最小例（booktabs \& 段組み \&
+脚注）}\label{ux6700ux5c0fux4f8bbooktabs-ux6bb5ux7d44ux307f-ux811aux6ce8}
+
+\begin{table}
+
+\caption{\label{tbl-minimal}最小レシピ：段組みと脚注}
+
+\centering{
+
+\centering
+\begin{threeparttable}
+\begin{tabular}[t]{lrrr}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{3}{c}{Summary} \\
+\cmidrule(l{3pt}r{3pt}){2-4}
+Group & $n$ & Mean & SD\\
+\midrule
+Control & 30 & 12.34 & 2.11\\
+Treatment A & 28 & 13.21 & 1.87\\
+Treatment B & 27 & 15.01 & 2.53\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\item \textit{Note: } 
+\item Values are mean (SD).
+\end{tablenotes}
+\end{threeparttable}
+
+}
+
+\end{table}%
+
+本文からは Table~\ref{tbl-minimal} のように参照できます。
+
+\section{2.
+主な関数と重要引数（LaTeX版）}\label{ux4e3bux306aux95a2ux6570ux3068ux91cdux8981ux5f15ux6570latexux7248}
+
+\begin{table}[!h]
+\centering
+\resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
+\begin{tabular}[t]{llll}
+\toprule
+Function & Key arguments & Purpose & Notes\\
+\midrule
+kbl() & format, booktabs, longtable, digits, col.names, row.names, align, caption, label, escape, format.args, valign, position & 基礎テーブル生成（knitr::kableの拡張） & booktabs=TRUE で綺麗な罫線。escape=FALSE で数式OK。\\
+kable\_styling() & latex\_options (hold\_position, striped, scale\_down, repeat\_header), font\_size, position, full\_width & 全体スタイルや配置を整える & repeat\_header は longtable=TRUE と併用。\\
+add\_header\_above() & header(named vector), bold, italic, align, line(LaTeX), escape & 上段の列見出し（段組み）を追加 & 合計列数=表の列数に一致。LaTeXマクロは escape=FALSE。\\
+footnote() & general, number, symbol, alphabet, threeparttable & 三部形式の脚注を追加 & threeparttable を自動利用。\\
+column\_spec() & column, width('2cm'), bold, italic, color, background, latex\_column\_spec & 列幅や装飾を列単位で制御 & xcolor が自動で読み込まれる。\\
+\addlinespace
+row\_spec() & row(0=header), bold, color, background, hline\_after & 行単位の装飾や罫線制御 & ヘッダ行は row=0。部分罫線は `\textbackslash{}cmidrule` を併用可。\\
+group\_rows() & group\_label, start\_row, end\_row, escape & 連続行を帯でグループ化 & 行番号はソート後のインデックスで指定。\\
+collapse\_rows() & columns, latex\_hline, valign, target & 同値セルの縦結合（連続部分） & 長表との相性は要検証。まずは短表で確認。\\
+landscape() & margin & 横向きページで出力 & pdflscape 依存。横長表に便利。\\
+save\_kable() & file, latex\_header\_includes & テーブルをファイル保存 & PDFは通常 knit 経由推奨。\\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\section{3. 列幅・色・行線}\label{ux5217ux5e45ux8272ux884cux7dda}
+
+\begin{table}
+
+\caption{\label{tbl-styling}列幅・色・行線の例}
+
+\centering{
+
+\centering
+\begin{tabular}[t]{>{\raggedright\arraybackslash}p{3cm}>{\raggedleft\arraybackslash}p{1.6cm}>{\raggedleft\arraybackslash}p{1.6cm}>{\raggedleft\arraybackslash}p{1.6cm}r}
+\toprule
+\textbf{ } & \textbf{mpg} & \textbf{cyl} & \textbf{disp} & \textbf{hp}\\
+\midrule
+\textbf{Mazda RX4} & 21.0 & \textcolor{blue}{6} & \cellcolor[HTML]{EFEFEF}{160} & 110\\
+\textbf{Mazda RX4 Wag} & 21.0 & \textcolor{blue}{6} & \cellcolor[HTML]{EFEFEF}{160} & 110\\
+\textbf{Datsun 710} & 22.8 & \textcolor{blue}{4} & \cellcolor[HTML]{EFEFEF}{108} & 93\\
+\midrule
+\textbf{Hornet 4 Drive} & 21.4 & \textcolor{blue}{6} & \cellcolor[HTML]{EFEFEF}{258} & 110\\
+\textbf{Hornet Sportabout} & 18.7 & \textcolor{blue}{8} & \cellcolor[HTML]{EFEFEF}{360} & 175\\
+\addlinespace
+\textbf{Valiant} & 18.1 & \textcolor{blue}{6} & \cellcolor[HTML]{EFEFEF}{225} & 105\\
+\bottomrule
+\end{tabular}
+
+}
+
+\end{table}%
+
+\section{4.
+longtable（複数ページ）}\label{longtableux8907ux6570ux30daux30fcux30b8}
+
+\begin{longtable}[t]{rrr}
+
+\caption{\label{tbl-longtable}longtable
+の基本（ページ跨ぎでヘッダ繰り返し）}
+
+\tabularnewline
+
+\toprule
+A & B & C\\
+\midrule
+\endfirsthead
+\multicolumn{3}{@{}l}{\textit{(continued)}}\\
+\toprule
+A & B & C\\
+\midrule
+\endhead
+
+\endfoot
+\bottomrule
+\endlastfoot
+1 & 0.7690785 & -0.6401028\\
+2 & 0.0945735 & 0.5835009\\
+3 & 0.5400228 & 0.1430305\\
+4 & 0.4757187 & 3.4147689\\
+5 & 1.0108121 & 0.3688312\\
+\addlinespace
+6 & 0.0148302 & -2.2259096\\
+7 & -0.9814969 & -0.4182953\\
+8 & 1.9256670 & -2.0654373\\
+9 & -1.2315970 & -0.4550973\\
+10 & 1.4865365 & -0.5628451\\
+\addlinespace
+11 & -0.0116775 & 2.0868347\\
+12 & 0.8279345 & -1.2591847\\
+13 & 0.8243959 & -1.1612956\\
+14 & 0.7538591 & -0.7651515\\
+15 & -0.8806291 & 0.7244821\\
+\addlinespace
+16 & 0.7981530 & -1.0306616\\
+17 & 0.1783338 & 0.7096168\\
+18 & 0.1749529 & -0.0239833\\
+19 & -0.2828129 & -1.1746491\\
+20 & -0.2858078 & -0.2647614\\
+\addlinespace
+21 & 2.3170450 & 0.7351135\\
+22 & 2.3415760 & 1.2355407\\
+23 & -0.0618315 & 0.5986492\\
+24 & 0.0031679 & 0.4960013\\
+25 & 0.1366049 & 0.7621820\\
+\addlinespace
+26 & 1.1049060 & 0.0217209\\
+27 & -0.4481680 & -0.3821367\\
+28 & 0.7260534 & 1.4248137\\
+29 & -0.8557726 & 0.3245495\\
+30 & -0.2344179 & 0.6680187\\
+\addlinespace
+31 & 0.1835784 & 2.1060576\\
+32 & 0.7535756 & -0.2077767\\
+33 & 1.1100167 & 1.3210180\\
+34 & 0.4178697 & -0.0707841\\
+35 & 0.3547993 & -0.6537265\\
+\addlinespace
+36 & 0.1216973 & 2.4652743\\
+37 & 0.6534702 & -0.9785047\\
+38 & 1.2020585 & -0.2066036\\
+39 & -0.5028535 & -0.2499698\\
+40 & -0.1873698 & -2.1378912\\
+\addlinespace
+41 & 0.3461981 & -0.5982500\\
+42 & -0.5702242 & 0.4694985\\
+43 & -1.2499020 & -1.5245718\\
+44 & 0.8181522 & -0.5508928\\
+45 & -0.5700436 & -0.4612399\\
+\addlinespace
+46 & -0.5949977 & -1.5080083\\
+47 & -0.2890411 & 1.8525430\\
+48 & -0.3918290 & -0.6940291\\
+49 & 1.3459708 & 0.8584311\\
+50 & 1.1371514 & 0.2467644\\
+\addlinespace
+51 & -0.7131617 & -0.6465214\\
+52 & 2.3062345 & -0.5896288\\
+53 & -0.1438764 & 0.0292732\\
+54 & -1.4236218 & 0.8999554\\
+55 & -0.1588518 & 0.8814837\\
+\addlinespace
+56 & -0.9334786 & 1.6937897\\
+57 & 0.0831327 & -1.8017939\\
+58 & 0.6267968 & 1.2657011\\
+59 & -0.7306676 & -0.2635127\\
+60 & 1.1688684 & 1.1297121\\
+\addlinespace
+61 & -0.8241676 & -1.1200201\\
+62 & 0.1504654 & -1.6573005\\
+63 & -0.5042832 & -1.0865505\\
+64 & -0.7397871 & 0.2573165\\
+65 & -0.2908912 & 0.9015591\\
+\addlinespace
+66 & -0.4675384 & -0.2163925\\
+67 & -0.4098618 & 0.2522726\\
+68 & 0.7673985 & -0.2334731\\
+69 & -0.9064484 & 2.1804813\\
+70 & -0.5175915 & 0.3183159\\
+\addlinespace
+71 & 0.5412852 & 0.3838292\\
+72 & -0.0542327 & -0.5924157\\
+73 & 0.9548811 & 0.1703646\\
+74 & -0.9551514 & 0.6648930\\
+75 & -0.1330722 & -1.2799966\\
+\addlinespace
+76 & -0.6970350 & -0.5541463\\
+77 & 1.3790795 & 0.5973675\\
+78 & 0.7601221 & -0.0606880\\
+79 & 0.4845187 & 0.0501421\\
+80 & -0.8847302 & 0.8098824\\
+\addlinespace
+81 & -0.3617090 & -0.7845303\\
+82 & 1.1937214 & -0.8079587\\
+83 & -0.3365179 & 1.1019131\\
+84 & -1.4994061 & 0.4526525\\
+85 & 0.6883861 & -0.8778149\\
+\addlinespace
+86 & -1.2565035 & 0.5404907\\
+87 & -0.4622839 & -0.6736491\\
+88 & -1.6957714 & 0.3246053\\
+89 & 1.6033491 & 1.3955095\\
+90 & -0.0773196 & 0.8537696\\
+\addlinespace
+91 & -0.2660694 & -0.5392963\\
+92 & 0.5313561 & -0.0670908\\
+93 & 0.4540572 & 0.2906668\\
+94 & 0.5884208 & -0.6347528\\
+95 & 1.5466024 & -0.0920957\\
+\addlinespace
+96 & -1.4052828 & -0.1068115\\
+97 & -1.0773535 & -1.0822714\\
+98 & 1.0933272 & -0.2552253\\
+99 & 2.2214450 & 0.5601084\\
+100 & 0.2772038 & -0.4288075\\
+\addlinespace
+101 & 0.5168891 & -0.6498781\\
+102 & 0.0815673 & 1.0619248\\
+103 & 0.2634253 & 0.0506282\\
+104 & -1.6147579 & 1.3448236\\
+105 & -1.0716271 & -0.0201085\\
+\addlinespace
+106 & 0.8478413 & -0.5665250\\
+107 & -1.0400572 & -0.3220919\\
+108 & -0.6635421 & -0.2545636\\
+109 & 1.2354759 & -1.0787687\\
+110 & 1.3740948 & 0.9567265\\
+\addlinespace
+111 & 0.3327897 & 0.4498769\\
+112 & -0.2569577 & 0.0534348\\
+113 & 0.6725709 & -1.7022170\\
+114 & 1.1167893 & -1.6115824\\
+115 & -0.5851974 & 0.6238670\\
+\addlinespace
+116 & -0.0547761 & 0.0375677\\
+117 & 0.1215148 & -1.9340150\\
+118 & 0.9837539 & -0.4911344\\
+119 & 1.1017398 & 0.7534654\\
+120 & -0.0329875 & 0.2393494\\*
+
+\end{longtable}
+
+\section{5. よくある落とし穴 \&
+回避}\label{ux3088ux304fux3042ux308bux843dux3068ux3057ux7a74-ux56deux907f}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{キャプションが出ない}：Quarto の
+  \texttt{\#\textbar{}\ tbl-cap:} は \textbf{チャンク先頭}に置く。\\
+\item
+  \textbf{LaTeXコードが文字のまま}：\texttt{escape=FALSE} を付ける。\\
+\item
+  \textbf{表が本文から離れる}：\texttt{kable\_styling(latex\_options=\textquotesingle{}hold\_position\textquotesingle{})}。\\
+\item
+  \textbf{``Table → Tab.''などの語を変えたい}：YAMLの
+  \texttt{include-in-header} で
+  \texttt{\textbackslash{}captionsetup{[}table{]}\{name=Tab.,labelsep=period\}}。\\
+\item
+  \textbf{キャプションと表の間隔}：\texttt{\textbackslash{}captionsetup{[}table{]}\{skip=6pt\}}。\\
+\item
+  \textbf{行の部分罫線}：\texttt{row\_spec(0,\ extra\_latex\_after=\textquotesingle{}\textbackslash{}\textbackslash{}cmidrule(lr)\{2-4\}\textquotesingle{})}（版によっては
+  add\_header\_above 直後に
+  \texttt{\textbackslash{}\textbackslash{}cmidrule} を手書き）。
+\end{itemize}
+
+\section{6.
+付録：最小テンプレ（コピペ用）}\label{ux4ed8ux9332ux6700ux5c0fux30c6ux30f3ux30d7ux30ecux30b3ux30d4ux30daux7528}
+
+\begin{table}
+
+\caption{\label{tbl-template}最小テンプレ}
+
+\centering{
+
+\centering
+\begin{tabular}[t]{lrrr}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{3}{c}{Summary} \\
+\cmidrule(l{3pt}r{3pt}){2-4}
+Group & $n$ & Mean & SD\\
+\midrule
+A & 10 & 1.23 & 0.11\\
+B & 12 & 4.56 & 0.22\\
+\bottomrule
+\end{tabular}
+
+}
+
+\end{table}%
+
+
+
+
+\end{document}

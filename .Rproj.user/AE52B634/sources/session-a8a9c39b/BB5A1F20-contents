@@ -1,0 +1,49 @@
+---
+title: "Table demo"
+format:
+  pdf:
+    pdf-engine: xelatex    # 日本語＆フォント対応（推奨）
+    include-in-header: |
+      \usepackage{fontspec}
+      \usepackage{xeCJK}              % 日本語
+      % 任意: UD教科書体がOSにある場合
+      % \setmainfont{UD Digi Kyokasho N-R}
+      % \setCJKmainfont{UD Digi Kyokasho N-R}
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+{r} \# packages library(dplyr) library(scales) library(knitr) library(kableExtra)
+
+# 例データ
+
+df \<- tibble::tibble( Group = c("Control","Treatment A","Treatment B"), n = c(30,28,27), Mean = c(12.345,13.210,15.007), SD = c(2.11,1.87,2.53) ) %\>% mutate( Mean = number(Mean, accuracy = 0.01), SD = number(SD, accuracy = 0.01) )
+
+# 綺麗な表
+
+kbl(df, format = "latex", booktabs = TRUE, caption = "Table 1. Group-wise descriptive statistics", col.names = c("Group","$n$","Mean","SD"), align = c("l","r","r","r"), escape = FALSE) \|\> kable_styling(latex_options = c("hold_position")) \|\> add_header_above(c(" " = 1, "Summary" = 3)) \|\> footnote(general = "Values are mean (SD).", threeparttable = TRUE)
+
+------------------------------------------------------------------------
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).

@@ -1,0 +1,19 @@
+\begin{table}[t]
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrr}
+\toprule
+ & \multicolumn{4}{c}{Range} &  \\ 
+\cmidrule(lr){2-5}
+Variable & Mean & SD & Min & Max & Obs \\ 
+\midrule\addlinespace[2.5pt]
+Population & 41.7 & 151.3 & 0.0 & 1,447.5 & 186 \\ 
+Area & 69.6 & 187.2 & 0.0 & 1,637.7 & 186 \\ 
+GDP\_per\_capita & 1.6 & 2.6 & 0.0 & 18.3 & 185 \\ 
+PPP\_per\_capita & 2.1 & 2.1 & 0.1 & 11.3 & 178 \\ 
+HDI\_2018 & 0.7 & 0.2 & 0.4 & 1.0 & 180 \\ 
+Polity\_Score & 4.3 & 6.1 & -10.0 & 10.0 & 158 \\ 
+FH\_Total & 57.7 & 29.9 & 0.0 & 100.0 & 185 \\ 
+\bottomrule
+\end{tabular*}
+\end{table}
+

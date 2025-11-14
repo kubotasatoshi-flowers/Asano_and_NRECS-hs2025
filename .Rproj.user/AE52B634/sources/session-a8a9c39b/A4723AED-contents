@@ -1,0 +1,58 @@
+[Wed Nov 12 13:30:55 2025] running mktexlsr
+[Wed Nov 12 13:30:55 2025] success, output:
+
+--end of output of mktexlsr.
+
+[Wed Nov 12 13:30:55 2025] running updmap-sys
+[Wed Nov 12 13:30:55 2025] success, output:
+updmap will read the following updmap.cfg files (in precedence order):
+  /cloud/home/r311224/.TinyTeX/texmf-dist/web2c/updmap.cfg
+updmap may write changes to the following updmap.cfg file:
+  /cloud/home/r311224/.TinyTeX/texmf-config/web2c/updmap.cfg
+dvips output dir: "/cloud/home/r311224/.TinyTeX/texmf-var/fonts/map/dvips/updmap"
+pdftex output dir: "/cloud/home/r311224/.TinyTeX/texmf-var/fonts/map/pdftex/updmap"
+dvipdfmx output dir: "/cloud/home/r311224/.TinyTeX/texmf-var/fonts/map/dvipdfmx/updmap"
+
+updmap is creating new map files
+using the following configuration:
+  LW35 font names                  : URWkb (/cloud/home/r311224/.TinyTeX/texmf-dist/web2c/updmap.cfg)
+  prefer outlines                  : true (/cloud/home/r311224/.TinyTeX/texmf-dist/web2c/updmap.cfg)
+  texhash enabled                  : true
+  download standard fonts (dvips)  : true (/cloud/home/r311224/.TinyTeX/texmf-dist/web2c/updmap.cfg)
+  download standard fonts (pdftex) : true (/cloud/home/r311224/.TinyTeX/texmf-dist/web2c/updmap.cfg)
+  jaEmbed replacement string       : haranoaji (/cloud/home/r311224/.TinyTeX/texmf-dist/web2c/updmap.cfg)
+  jaVariant replacement string     : -04 (/cloud/home/r311224/.TinyTeX/texmf-dist/web2c/updmap.cfg)
+  scEmbed replacement string       : arphic (/cloud/home/r311224/.TinyTeX/texmf-dist/web2c/updmap.cfg)
+  tcEmbed replacement string       : arphic (/cloud/home/r311224/.TinyTeX/texmf-dist/web2c/updmap.cfg)
+  koEmbed replacement string       : baekmuk (/cloud/home/r311224/.TinyTeX/texmf-dist/web2c/updmap.cfg)
+  create a mapfile for pxdvi       : false (default)
+
+Scanning for LW35 support files  [  3 files]
+Scanning for MixedMap entries    [  7 files]
+Scanning for KanjiMap entries    [  0 files]
+Scanning for Map entries         [ 21 files]
+
+Generating output for dvipdfmx...
+Generating output for ps2pk...
+Generating output for dvips...
+Generating output for pdftex...
+
+Files generated:
+  /cloud/home/r311224/.TinyTeX/texmf-var/fonts/map/dvips/updmap:
+       15806 2025-11-12 13:30:55 builtin35.map
+       21279 2025-11-12 13:30:55 download35.map
+      127357 2025-11-12 13:30:55 psfonts_pk.map
+      133523 2025-11-12 13:30:55 psfonts_t1.map
+      133518 2025-11-12 13:30:55 ps2pk.map
+      133523 2025-11-12 13:30:55 psfonts.map = psfonts_t1.map
+  /cloud/home/r311224/.TinyTeX/texmf-var/fonts/map/pdftex/updmap:
+      133525 2025-11-12 13:30:55 pdftex_dl14.map
+      131860 2025-11-12 13:30:55 pdftex_ndl14.map
+      133525 2025-11-12 13:30:55 pdftex.map = pdftex_dl14.map
+  /cloud/home/r311224/.TinyTeX/texmf-var/fonts/map/dvipdfmx/updmap:
+         329 2025-11-12 13:30:55 kanjix.map
+
+Transcript written on: /cloud/home/r311224/.TinyTeX/texmf-var/web2c/updmap.log
+updmap: updating ls-R files.
+--end of output of updmap-sys.
+

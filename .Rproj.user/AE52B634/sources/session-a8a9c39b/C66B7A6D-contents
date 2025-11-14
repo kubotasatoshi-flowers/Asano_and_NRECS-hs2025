@@ -1,0 +1,45 @@
+---
+title: "Test"
+format:
+  pdf:
+    pdf-engine: xelatex
+    include-in-header:
+      text: |
+        \usepackage{fontspec}
+        \usepackage{xeCJK}
+        \usepackage{caption}
+        \captionsetup[table]{name=Table,labelsep=period,skip=0pt}
+        \usepackage{longtable}
+        \captionsetup[longtable]{skip=0pt}
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: tbl-summary                 # ← Quartoの表ID（tbl-で始める）
+#| tbl-cap: "Descriptive statistics"  # ← キャプション
+library(dplyr)
+library(scales)
+library(knitr)
+library(kableExtra)
+df <- tibble::tibble(
+  Group = c("Control","Treatment A","Treatment B"),
+  n  = c(30,28,27),
+  Mean = c(12.345,13.210,15.007),
+  SD   = c(2.11,1.87,2.53)
+) |>
+  mutate(
+    Mean = number(Mean, accuracy = 0.01),
+    SD   = number(SD,   accuracy = 0.01)
+  )
+
+
+kbl(df, format="latex", booktabs=TRUE,
+    col.names=c("","$n$","Mean","SD"),
+    escape=FALSE) |>
+  kable_styling(latex_options = "hold_position") |>
+  add_header_above(c(" " = 1, "Summary" = 3)) |>
+  footnote(general = "Values are mean (SD).", threeparttable = TRUE)
+```

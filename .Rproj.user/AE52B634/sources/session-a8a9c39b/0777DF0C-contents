@@ -1,0 +1,6 @@
+[Wed Nov 12 13:30:48 2025] install: haranoaji
+[Wed Nov 12 13:30:52 2025] install: ipaex
+[Wed Nov 12 13:30:53 2025] install: luatexja
+[Wed Nov 12 13:30:55 2025] install: tex-gyre
+[Wed Nov 12 13:30:55 2025] command: mktexlsr
+[Wed Nov 12 13:30:55 2025] command: updmap-sys

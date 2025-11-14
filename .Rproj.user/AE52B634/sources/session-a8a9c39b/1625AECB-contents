@@ -1,0 +1,32 @@
+---
+title: "Table demo"
+output:
+  pdf_document:
+    latex_engine: xelatex
+---
+
+```{r}
+library(dplyr)
+library(scales)
+library(knitr)
+library(kableExtra)
+
+df <- tibble::tibble(
+  Group = c("Control","Treatment A","Treatment B"),
+  n  = c(30,28,27),
+  Mean = c(12.345,13.210,15.007),
+  SD   = c(2.11,1.87,2.53)
+) %>%
+  mutate(
+    Mean = number(Mean, accuracy = 0.01),
+    SD   = number(SD,   accuracy = 0.01)
+  )
+
+kbl(df, format = "latex", booktabs = TRUE,
+    caption = "Group-wise descriptive statistics",
+    col.names = c("Treatments","$n$","Mean","SD"),
+    align = c("l","r","r","r"), escape = FALSE) |>
+  kable_styling(latex_options = c("hold_position")) |>
+  add_header_above(c(" " = 1, "Summary" = 3)) |>
+  footnote(general = "Values are mean (SD).", threeparttable = TRUE)
+```

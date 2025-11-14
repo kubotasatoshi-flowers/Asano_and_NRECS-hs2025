@@ -1,0 +1,4 @@
+- \usepackage{caption}
+- \captionsetup[table]{labelsep=period}
+
+tbl-cap-location: top   # top / bottom
