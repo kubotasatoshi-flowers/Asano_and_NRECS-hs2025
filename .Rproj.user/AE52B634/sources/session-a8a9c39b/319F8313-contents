@@ -1,9 +1,0 @@
-library(tinytex)
-root <- tinytex::tinytex_root()
-tl   <- Sys.glob(file.path(root, "bin", "*", "tlmgr"))[1]   # ← normalizePathしない
-
-# パッケージ情報
-system2(tl, c("info", "multirow"), stdout = TRUE, stderr = TRUE)
-
-# 実ファイルの所在
-system2(Sys.which("kpsewhich"), "multirow.sty", stdout = TRUE, stderr = TRUE)
