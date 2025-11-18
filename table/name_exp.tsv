@@ -1,0 +1,8 @@
+実験区の名称	熱源の種類	N.RECSの種類
+A-st区	Air HP	N.RECS-st
+A-hs区	Air HP	N.RECS-hs
+A-ug区	Air HP	N.RECS-ug
+W-st区	Water HP	N.RECS-st
+W-hs区	Water HP	N.RECS-hs	
+W-ug区	Water HP	N.RECS-ug
+Control区	なし	なし

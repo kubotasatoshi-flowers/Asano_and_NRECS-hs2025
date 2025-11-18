@@ -1,0 +1,260 @@
+---
+title: "アサノ大成基礎エンジニアリング報告書"
+
+author: "名前\n大学"
+
+lang: ja
+format:
+  pdf:
+    latex-engine: /cloud/home/r311224/.TinyTeX/bin/x86_64-linux/lualatex
+    keep-tex: true
+    
+    fontsize: 11pt        # 本文の基本フォントサイズ
+    linestretch: 1.5      # 行間（1.0 = 単行, 1.5, 2 など）
+    geometry: 
+      - margin=25mm       # 全方向 25mm
+      - top=25mm        # 必要なら個別指定も可
+      - bottom=25mm
+      - left=20mm
+      - right=20mm
+    include-in-header:
+      text: |
+        \usepackage{luatexja}
+        \usepackage[haranoaji]{luatexja-preset}
+        \usepackage{fontspec}\setmainfont{TeX Gyre Termes}
+        \usepackage{caption}\captionsetup[table]{skip=6pt}
+        \usepackage{booktabs,longtable,array,xcolor,colortbl,multirow}
+        \usepackage{pdflscape}
+        \newcommand{\blandscape}{\begin{landscape}}
+        \newcommand{\elandscape}{\end{landscape}}
+        \newlength{\myfootsep}
+        \setlength{\myfootsep}{0.1\baselineskip}
+        \ltjsetparameter{prebreakpenalty={`）,10000}}
+        \newcommand{\tabrefJP}[1]{\mbox{（Table~\ref{#1}）}}
+        \newcommand{\figrefJP}[1]{\mbox{（Figure~\ref{#1}）}}
+        
+        
+    header-includes:
+      - \usepackage{titlesec}
+      - \usepackage{xcolor}
+      - \usepackage{caption}
+      - \captionsetup[table]{name=Table,labelsep=period}
+      - \captionsetup[figure]{name=Fig,labelsep=period}
+      - |
+        % 見出し後の共通余白を定義
+        \newlength{\headingafter}
+        \setlength{\headingafter}{0ex}
+        %{0ex plus 0.4ex minus 0.2ex}
+           
+        % ----- section -----       
+        \titleformat{\section}
+          {\normalfont\large\bfseries\centering\color{black}}
+          {\thesection}{1em}{}
+        \titlespacing*{\section}
+          {0pt}          % 左インデント
+          {2.5ex plus 1ex} % 見出しの「前（上）」の余白（レベルごとに変えてOK）
+          {\headingafter}  % 見出しの「後（下）」＝本文との行間（共通）
+          
+        % ----- subsection -----
+        \titleformat{\subsection}
+          {\normalfont\large\bfseries\color{black}}
+          {\thesubsection}{0.7em}{}
+        \titlespacing*{\subsection}
+          {0pt}          % 左インデント
+          {2.5ex plus 1ex} % 見出しの「前（上）」の余白（レベルごとに変えてOK）
+          {\headingafter}  % 見出しの「後（下）」＝本文との行間（共通）
+        
+        % ----- subsubsection -----
+        \titleformat{\subsubsection}
+          {\normalfont\normalsize\bfseries\color{black}}
+          {\thesubsubsection}{0.5em}{}
+        \titlespacing*{\subsubsection}
+          {0pt}          % 左インデント
+          {2.5ex plus 1ex} % 見出しの「前（上）」の余白（レベルごとに変えてOK）
+          {\headingafter}  % 見出しの「後（下）」＝本文との行間（共通）
+          
+tbl-cap-location: top   # top / bottom
+    
+crossref:
+  tbl-prefix: "Table"
+  fig-prefix: "Fig"
+
+editor: 
+  markdown: 
+    wrap: 72
+execute:
+  echo: false
+---
+
+```{r}
+#| include: false
+#setup チャンク
+library(gtExtras)
+library(gt)
+library(dplyr)
+```
+
+\newpage
+
+# 目的
+
+　CO~2~排出量の削減は世界規模の課題であり，我が国においても2050年までのカーボンニュートラルの達成が目標となっている。施設園芸では一般的に冬季には化石燃料由来のエネルギーによって，温室を暖房することが一般的に行われており，施設園芸における園芸作物生産はCO~2~の大幅な排出が伴うことから，この排出量の削減が大きな課題となっている。したがって，再生可能エネルギーおよび低利用エネルギーの積極的な利用を見据えた省エネルギー・低CO~2~排出栽培技術の開発が必要である。そこで，本研究ではアサノ大成基礎エンジニアリング株式会社が得意とする地中熱利用と日本大学が開発中の蓄熱型N.RECS（N.RECS-hs）を組み合わせて，省エネルギー・脱炭素型植物栽培システムを構築するとともに，従来方法と比較して本システムの性能を評価することを目的とする。
+
+# 材料および方法
+## 温室内における装置の配置と運用
+
+　日本大学生物資源科学部のフェンロー型プラスチック温室を東西に二分割し，東側を対照温室，西側を処理温室とした。
+に処理温室内におけるに熱源と各種N.RECS栽培装置の設置状況およびセンサーの設置位置を示した\figrefJP{@fig-greenhouse}。同温室内には幅1.3m，長さ9mの栽培ベンチが南北に3台ずつ，合計６台設置されている。北側と南側のベンチには，それぞれ標準型N.RECS（N.RECS-st），蓄熱型N.RECS-hs（N.RECS-hs），U字溝型N.RECS(N.RECS-ug）を導入した。
+　N.RECS-stとN.RECS-hsの栽培槽の内寸は幅0.9 m，長さ6
+mであるがPEX管のリターン部分を調整するためアルミ製熱交換パネルは5mの長さとしたため，実効栽培面積は4.5 m^2^であった。N.RECS-stにおける根域温度の制御はスマートガーデナー（オネスト）により行った。N.RECS-hsはN.RECS-stの栽培槽の下にN.RECS-stの実効栽培面積と同一の蓄熱槽を設置した。この蓄熱部分は外寸10
+× 10 × 100 cmのアルミ製カートリッジ45本からなり，各カートリッジには8Lの水を充填した。このカートリッジの上下をアルミ製熱交換パネルで挟みPEX管に冷温水を送液した。熱源から蓄熱槽および蓄熱槽から栽培槽への送液制御は，オネスト社製の制御装置により行った。N.RECS-ugは内寸0.2
+m，長さ8
+mのものを一つのベンチに2本設置した。根域温度の制御はN.RECS-stと同様にスマートガーデナーで行った。N.RECS用熱源は北側3ベンチを地下水熱式ヒートポンプ，南側3ベンチを空気熱源式ヒートポンプとした。熱源とN.RECSへの接続は並列とし，熱源からN.RECSまでの配管距離はほぼ同一であった。
+
+![処理区における温室内の実験区の配置](../figs/greenhouse20251117.pdf){#fig-greenhouse
+fig-pos="H"}
+
+## 供試した根域温度制御用のヒートポンプの種類と性能
+
+　根域温度制御用のヒートポンプ（HP）には空気熱源式HP（Air
+HP）としてエコヌクールレオ（三菱電機（株），VEH-712HCC-k），地下水熱源式HP（Water
+HP）として（（株）長府製作所，GSHP-0624X）を用いた。Air
+HPの一次側熱交換器（室外機）は温室南側の外に設置し，Water
+HPの一次側熱交換は温室北西の外に設置した貯水槽内に未利用熱回収用熱交換ユニット（ジオシステム（株），G-HEX）に接続して行った。貯水槽には日本大学生物資源科学部の井戸水を供給し，供給のタイミングは貯水槽水温度が設定値を上回ったら井戸水を10
+L／分の流速で注水した。井戸水の注水制御はスマートガーデナーで行った。
+@tbl-spec に両熱源の主要諸元を示した。Air HPの冷却能力は7.2
+kW，定格消費電力は2.57 kW，Water HPの冷却能力は6.0
+kW，定格消費電力は1.33
+kWであり，両熱源の計算上のCOPはそれぞれ2.80と4.51であった。
+
+```{r}
+#| label: tbl-spec
+#| tbl-cap: "熱源の諸元"
+#| tbl-pos: H
+#| echo: false
+#| message: false
+#| warning: false
+
+df <- read.table("/cloud/project/table/spec.csv",
+                 sep=",",
+                 comment.char="#",
+                 header=T) 
+gt(df) %>%
+  cols_align(align = "center", columns = 3:6)  %>%
+  tab_style(style = cell_text(align = "center"),
+            locations = cells_column_labels()) %>%
+  tab_spanner(column = 3:4, label="冷却（kW）") %>%
+  tab_spanner(column = 5:6, label="加熱（kW）") %>%
+  cols_label("cool_p"="能力","cool_ec"="定格消費電力","heat_p"="能力","heat_ec"="定格消費電力")
+```
+
+## 各部位の温度と流速測定に用いたセンサーと消費電力量の計測
+
+　温度等のセンサーの設置位置はに示し，それらのセンサーの測定対象と種類等については
+@tbl-sensorID1 と @tbl-sensorID2
+に示した。各種温度についてはサーミスタまたはPt100，両熱源の二次側流速は小型電磁流量センサー（愛知時計電機（株），VN10R）で計測した。全ての計測データは1分間隔でデータロガーに記録した。両熱源の消費電力量は小型電力モニタ（オムロン（株），KM-N1-FLK）で計測し，そのパルス出力をデータロガー（ティアンドデイ（株），RTR505B）で1分間ごとに記録した。
+記録したデータはRで作成したスクリプトにより適宜成形した後mysqlサーバーにアップロードし，異なるセンサーのデータを連結して適宜図を作成した。なお，Pt100の測定データの一部にノイズが見られたので，Rで作成したHampel関数によりノイズを除去した。
+
+\clearpage
+\blandscape
+
+```{r}
+#| label: tbl-sensorID1
+#| tbl-cap: "センサーの設置場所，測定対象とセンサーの種類-1"
+#| tbl-pos: H
+#| echo: false
+#| message: false
+#| warning: false
+
+# 表1を入れる
+
+sensor <- read.delim("/cloud/project/table/SensorID_1.tsv",
+                 sep="\t",
+                 comment.char="#",
+                 header=T) 
+gt(sensor)%>%
+  cols_align(align = "center", columns = 1)%>%
+  cols_align(align = "left", columns = 2:5)%>%
+  fmt_markdown(columns = everything())             # 本文すべてのセルが対象
+```
+
+```{r}
+#| label: tbl-sensorID2
+#| tbl-cap: "センサーの設置場所，測定対象とセンサーの種類-2"
+#| tbl-pos: H
+#| echo: false
+#| message: false
+#| warning: false
+
+# 表1を入れる
+
+sensor <- read.delim("/cloud/project/table/SensorID_2.tsv",
+                 sep="\t",
+                 comment.char="#",
+                 header=T) 
+gt(sensor)%>%
+  cols_align(align = "center", columns = 1)%>%
+  cols_align(align = "left", columns = 2:5)%>%
+  fmt_markdown(columns = everything())             # 本文すべてのセルが対象
+```
+
+\elandscape
+\clearpage
+
+## 実験区の設定と装置の運用
+
+　実験区は熱源としてAir HPとWater
+HPの2種類に対して，N.RECSのシステムをN.RECS-st，N.RECS-hs，N.RECS-ugを組み組み合わせた6区と，根域温度制御を行わない対照区の合計7区を設けた\tabrefJP{tbl-exp_name}。
+
+```{r}
+#| label: tbl-exp_name
+#| tbl-cap: "実験区の設定と熱源およびN.RECSの種類"
+#| tbl-pos: H
+#| echo: false
+#| message: false
+#| warning: false
+
+exp_n <- read.delim("/cloud/project/table/name_exp.tsv",
+                 sep="\t",
+                 comment.char="#",
+                 header=T) 
+gt(exp_n)%>%
+  cols_align(align = "center", columns = 1:3)%>%
+  fmt_markdown(columns = everything())             # 本文すべてのセルが対象
+```
+
+　熱源の供給水温は10°Cとし，N.RECS-hsであるA-hs区とW-hs区の根域温度の設定値は21°C±0.5°C，その他の区は下限値を20°C，上限値を22°Cに設定した\tabrefJP{tbl-exp_setting}
+。N.RECS-hs区とその他の区との根域温度の設定方法の違いは，制御装置が異なり設定値の指定方法が異なるためである。栽培植物にはN.RECS-ug区ではイチゴと切り花用ガーベラ，N.RECS-stとN.RECS-hsではガーデンシクラメンを供試した。なお，本実験における植物の栽培データについてはガーデンシクラメンについて報告する。
+
+```{r}
+#| label: tbl-exp_setting
+#| tbl-cap: "各実験区における熱源の設定温度と栽培槽の制御温度"
+#| tbl-pos: H
+#| echo: false
+#| message: false
+#| warning: false
+
+exp_set <- read.delim("/cloud/project/table/setting_exp.tsv",
+                 sep="\t",
+                 comment.char="#",
+                 header=T) 
+gt(exp_set)%>%
+  cols_align(align = "center", columns = 1:2|5) %>%
+    cols_align(align = "left", columns = 3:4) %>%
+  tab_spanner(columns = 3:4,
+              latex("根域温度の設定\\textsuperscript{z}"))%>%
+  tab_source_note(
+    source_note = latex("\\textsuperscript{z}\\setstretch{1} N.RECS-hsの制御装置では他の2区とは異なり，設定温度に対して±0.5°Cのヒステリシスで制御されている。上限値を超えると冷却が始まり，下限値に達すると冷却が停止する。")) %>%
+  fmt_markdown(columns = everything())
+```
+
+## 測定データの集計方法と成績係数（COP）の計算方法
+
+　測定項目は温室内気温，培養土温度，蓄熱槽温度，気温制御用HPの消費電力量，W-HPとA-HPの消費電力量，灯油消費量を測定する。これらの測定データを解析し，W-HPと従来法であるA-HPおよび気温制御のみの対照区のエネルギー消費量とCO~2~排出量を比較してW-HPの優位性を検証するとともに，N.RECS-hsとN.RECS-stを比較して蓄熱の有効性について明らかにする。
+
+
+# 結果
+
+## 実験期間中の温室内の気温の推移
+
+## 考察
