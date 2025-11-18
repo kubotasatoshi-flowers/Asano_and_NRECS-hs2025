@@ -95,10 +95,14 @@ library(dplyr)
 
 ## 温室内における装置の配置と運用
 
-　日本大学生物資源科学部の学長温室を東西に二分割し，東側を対照区，西側を処理区とした。両区には幅1.2m，長さ8mの栽培ベンチが各６台を設置し，処理区の６台のベンチに標準型N.RECS（N.RECS-St），蓄熱型N.RECS-hs（N.RECS-hs），U字溝型N.RECS(N.RECS-ug）を導入した。N.RECS用熱源は北側3ベンチを地下水熱式ヒートポンプ（W-HP），南側3ベンチを空気熱源式ヒートポンプ（A-HP）とした。N.RECS-hsに用いる蓄熱材は水を用いた。
-\## ヒートポンプ（HP）の種類と設定 空気熱源式HP（Air
+　日本大学生物資源科学部のフェンロー型プラスチック温室を東西に二分割し，東側を対照区，西側を処理区とした（@fig-greenhouse ）。両区には幅1.3m，長さ9mの栽培ベンチが６台設置し，処理区の６台のベンチに標準型N.RECS（N.RECS-St），蓄熱型N.RECS-hs（N.RECS-hs），U字溝型N.RECS(N.RECS-ug）を導入した。N.RECS用熱源は北側3ベンチを地下水熱式ヒートポンプ，南側3ベンチを空気熱源式ヒートポンプとした。N.RECS-hsに用いる蓄熱材は水を用いた。
+　ヒートポンプ（HP）の種類と設定 空気熱源式HP（Air
 HP）にはエコヌクールレオ（三菱電機（株），型番入れる），地下水熱源式HP（Water
-HP）には（長府製作所，型番入れる）を用いた。 @tbl-spec
+HP）には（長府製作所，型番入れる）を用いた。
+
+![処理区における温室内の実験区の配置](../figs/greenhouse.pdf){#fig-greenhouse fig-pos="H"}
+
+　 @tbl-spec
 に両熱源の主要諸元を示した。Air
 HPの一次側熱交換器（室外機）は温室南側の外に設置され，Water
 HPの一次側熱交換は温室北西に設置した貯水槽に設置した？？？に接続して行った。
@@ -127,6 +131,23 @@ gt(df) %>%
   cols_label("cool_p"="能力","cool_ec"="定格消費電力","heat_p"="能力","heat_ec"="定格消費電力")
 ```
 
+```{r}
+#| label: tbl-sensorID
+#| tbl-cap: "センサーの設置場所，測定対象とセンサーの種類"
+#| tbl-pos: H
+#| echo: false
+#| message: false
+#| warning: false
+
+# 表1を入れる
+
+sensor <- read.delim("/cloud/project/table/SensorID20251116.tsv",
+                 sep="\t",
+                 comment.char="#",
+                 header=T) 
+gt(sensor)%>%
+  cols_align(align = "center", columns = 1:5) 
+```
 ## 実験区の設定と装置の運用
 
 　対照区は根域温度の制御は行わず慣行栽培法で栽培した。処理区の既設A-HPと新規W-HPの2種類とN.REC-St，N.RECS-hs，N.RECS-ugの3種類を組み合わせて6区を設定した。栽培植物は野菜，花等のポット苗，切り花や球根植物を中心にシーズンごとに選定して供試する。
